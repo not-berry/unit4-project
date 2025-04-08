@@ -2,17 +2,19 @@ color black = #000000;
 color white = #ffffff;
 color red   = #FF4646;
 
-int housex,housey;
+int housex,housey, treex,treey;
  
 void setup() {
   size(800,800);
   background(255);
   fill(white);
   stroke(black);
-  strokeWeight(2);
+  strokeWeight(5);
   
   housex = 0;
   housey = 200;
+  treex = 400;
+  treey = 400;
   
   for (int i = 0; i < 12; i += 1) {
     housex += 140;
@@ -20,9 +22,9 @@ void setup() {
       housex = 140;
       housey += 200;
     }
-    house(housex,housey,1,radians(0));
+    //house(housex,housey,1,radians(0));
   }
-  //tree(x,y,1,radians(0));
+  tree(treex,treey,1,radians(0));
 }
 
 void house(float x, float y, float s, float r) {
@@ -83,7 +85,7 @@ void tree(float x, float y, float s, float r) {
 }
 
 void trunk() {
-  rect(0,0, 20,100);
+  rect(0,0, 30,150, 5);
 }
 
 void branch() {
@@ -91,7 +93,9 @@ void branch() {
 }
 
 void foliage() {
-  
+  stroke(white);
+  fill(black);
+  ellipse(15,-30, 100,100);
 }
 
 void fruit() {
