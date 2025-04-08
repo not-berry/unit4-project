@@ -78,24 +78,39 @@ void tree(float x, float y, float s, float r) {
   scale(s);
   rotate(r);
   trunk();
-  branch();
-  foliage();
+  branch(30,20);
+  foliage(15,-35, 0.9);
+  foliage(-10,-10, 0.8);
+  foliage(40,-10, 0.8);
+  foliage(15,0, 0.6);
   fruit();
   popMatrix();
 }
 
 void trunk() {
+  stroke(black);
+  fill(white);
   rect(0,0, 30,150, 5);
 }
 
-void branch() {
-  
-}
-
-void foliage() {
+void branch(int x, int y) {
+  stroke(black);
+  noFill();
+  arc(x,y, 20,100, radians(30),radians(90));
+  arc(x,y, 35,120, radians(25),radians(90));
   stroke(white);
   fill(black);
-  ellipse(15,-30, 100,100);
+  ellipse(0,0, 40,40);
+}
+
+void foliage(int x, int y, float s) {
+  pushMatrix();
+  translate(x, y);
+  stroke(white);
+  fill(black);
+  scale(s);
+  ellipse(0,0, 100,100);
+  popMatrix();
 }
 
 void fruit() {
