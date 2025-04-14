@@ -78,12 +78,12 @@ void tree(float x, float y, float s, float r) {
   scale(s);
   rotate(r);
   trunk();
-  branch(30,30, 1);
-  branch(30,30, -1);
-  foliage(15,-35, 0.9);
-  foliage(-10,-10, 0.8);
-  foliage(40,-10, 0.8);
-  foliage(15,0, 0.6);
+  branch(30,random(20,60), 1);
+  branch(30,random(20,60), -1);
+  foliage(15,-35, random(.6,.9));
+  foliage(-10,-10, random(.6,.9));
+  foliage(40,-10, random(.6,.9));
+  foliage(15,0, random(.6,.9));
   fruit();
   popMatrix();
 }
@@ -94,23 +94,26 @@ void trunk() {
   rect(0,0, 30,150, 5);
 }
 
-void branch(int x, int y, float flip) {
-  if (flip == -1) {
-    x += -30;
+void branch(int x, float y, float flip) {
+  if (!(int(random(3))==0)) {
+    if (flip == -1) {
+      x += -30;
+    }
+    pushMatrix();
+    stroke(black);
+    noFill();
+    scale(flip,1);
+    arc(x,y, 20,100, radians(30),radians(90));
+    arc(x,y, 35,120, radians(25),radians(90));
+    popMatrix();
+    pushMatrix();
+    translate(15, 0);
+    stroke(white);
+    fill(black);
+    scale(.6);
+    ellipse(45*flip,y+70, 40,40);
+    popMatrix();
   }
-  pushMatrix();
-  stroke(black);
-  noFill();
-  scale(flip,1);
-  arc(x,y, 20,100, radians(30),radians(90));
-  arc(x,y, 35,120, radians(25),radians(90));
-  popMatrix();
-  pushMatrix();
-  stroke(white);
-  fill(black);
-  scale(.6);
-  ellipse(x+40*flip,y+50, 40,40);
-  popMatrix();
 }
 
 void foliage(int x, int y, float s) {
