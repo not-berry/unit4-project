@@ -1,30 +1,27 @@
-color black = #000000;
-color white = #ffffff;
-color red   = #FF4646;
-
-int housex,housey, treex,treey;
- 
 void setup() {
   size(800,800);
-  background(255);
+  background(black);
   fill(white);
   stroke(black);
   strokeWeight(5);
   
-  housex = 0;
-  housey = 200;
+  
+  ellipse(400,600, 2000,500);
+  
+  housex = -140;
+  housey = 450;
   treex = 400;
   treey = 400;
   
   for (int i = 0; i < 12; i += 1) {
     housex += 140;
-    if(housex == 700) {
-      housex = 140;
+    if(housex == 840) {
+      housex = 0;
       housey += 200;
     }
-    //house(housex,housey,1,radians(0));
+    house(random(housex-30,housex+30),random(housey-30,housey+50),1,radians(0));
   }
-  tree(treex,treey,1,radians(0));
+  tree(treex,treey,0.7,radians(0));
 }
 
 void house(float x, float y, float s, float r) {
@@ -124,10 +121,6 @@ void foliage(int x, int y, float s) {
   scale(s);
   ellipse(0,0, 100,100);
   popMatrix();
-}
-
-void fruit() {
-  
 }
 
 void fruit() {
