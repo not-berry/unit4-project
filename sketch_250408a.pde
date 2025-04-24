@@ -25,9 +25,12 @@ void setup() {
       housex = 0;
       housey += 200;
     }
-    house(random(housex-20,housex+20),random(housey-30,housey+50),1,radians(0));
+    house(random(housex-20,housex+20),random(housey-30,housey+30),1,radians(0));
+    if (int(random(2)) == 0) {
+      tree(housex - 30,random(housey-10,housey+10),0.9,radians(0));
+    }
   }
-  tree(400,400,0.9,radians(0));
+  moon(random(50,150),random(50,150), 1);
   for(int i = 0; i < 5; i += 1) {
     cloud(i * 200,random(50, 300), 1);
   }
@@ -38,6 +41,8 @@ void house(float x, float y, float s, float r) {
   translate(x, y);
   scale(s);
   rotate(r);
+  fill(white);
+  stroke(black);
   chimney(random(-80,-40));
   outline(random(0,20));
   window();
@@ -155,4 +160,18 @@ void cloud(float x, float y, float s) {
     ellipse(x,y+random(-15,15), 50,50);
     x += 10;
   }
+}
+
+void moon(float x, float y, float s) {
+  pushMatrix();
+  scale(s);
+  translate(x,y);
+  rotate(radians(15));
+  stroke(white);
+  fill(white);
+  circle(0,0,60);
+  stroke(black);
+  fill(black);
+  circle(10,0, 50);
+  popMatrix();
 }
