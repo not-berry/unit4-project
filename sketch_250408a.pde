@@ -7,6 +7,14 @@ int housex,housey, treex,treey;
 void setup() {
   size(800,800);
   background(black);
+  
+  moon(random(50,150),random(50,150), 1);
+  for(int i = 0; i < 30; i += 1) {
+    star(random(800),random(0,400), random(0.1,0.5), random(radians(360)));
+  }
+  
+  
+  
   fill(white);
   stroke(black);
   strokeWeight(3);
@@ -27,14 +35,17 @@ void setup() {
     }
     house(random(housex-20,housex+20),random(housey-30,housey+30),1,radians(0));
     if (int(random(2)) == 0) {
-      tree(housex - 30,random(housey-10,housey+10),0.9,radians(0));
+      tree(housex - random(-30,30),random(housey-10,housey+30),0.9,radians(0));
     }
   }
-  moon(random(50,150),random(50,150), 1);
   for(int i = 0; i < 5; i += 1) {
     cloud(i * 200,random(50, 300), 1);
   }
 }
+
+
+
+
 
 void house(float x, float y, float s, float r) {
   pushMatrix();
@@ -173,5 +184,25 @@ void moon(float x, float y, float s) {
   stroke(black);
   fill(black);
   circle(10,0, 50);
+  popMatrix();
+}
+
+void star(float x, float y, float s, float r) {
+  pushMatrix();
+  translate(x,y);
+  scale(s);
+  rotate(r);
+  strokeWeight(0);
+  stroke(white);
+  fill(white);
+  for(int i = 0; i < 5; i += 1) {
+    triangle(-10,0, 10,0, 0,-40);
+    rotate(radians(72));
+  }
+  rotate(radians(36));
+  for(int i = 0; i < 5; i += 1) {
+    triangle(-10,0, 10,0, 0,-30);
+    rotate(radians(72));
+  }
   popMatrix();
 }
